@@ -171,14 +171,33 @@ app.put("/orders/:orderId", requireAuth, async (req, res) => {
 });
 
 ////////////////////////////////////////////////////////////////////////
-//for product(get, update, delete, create)
+//for product(get, delete )
+app.get("/products", async (req, res) => {
+  try {
+    const products = await prisma.product.findMany();
+    res.json(products);
+  } catch (error) {
+    console.error("Error fetching products:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
+app.delete("/products/:productId", async (req, res) => {
+  const productId = parseInt(req.params.productId);
 
+  try {
+    const deletedProduct = await prisma.product.delete({
+      where: {
+        productId,
+      },
+    });
 
-
-
-
-
+    res.json(deletedProduct);
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
 // this endpoint is used by the client to verify the user status and to make sure the user is registered in our database once they signup with Auth0
@@ -188,7 +207,6 @@ app.post("/verify-user", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
   const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
   const name = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/name`];
-  // 用户创建的时候只有email，怎么拿到他们其他信息？？？
 
   const user = await prisma.user.findUnique({
     where: {

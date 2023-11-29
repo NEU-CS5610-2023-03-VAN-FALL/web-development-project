@@ -1,0 +1,73 @@
+
+.header {
+    
+    font-size: medium;
+    border-bottom: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+}
+  
+.title {
+      font-family: Verdana, Geneva, Tahoma, sans-serif;
+      font-style: italic;
+      font-size: 50px;
+}
+
+.menu {
+      position: sticky;
+      top: 0;
+      background-color:antiquewhite;
+      font-size: 20px;
+      
+   
+}
+
+.menu-list {
+      display: flex;
+      justify-content: space-evenly;
+      list-style-type: none;
+      margin: 0;
+      padding-left: 0;
+      align-items: center;
+      height: 100%;
+}
+
+.cart-icon {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+.drinks-container {
+    margin-top: 20px;
+  }
+  
+  .drinks-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    max-width: 800px; /* Set a maximum width to control the number of items per row */
+    margin: 0 auto; /* Center the drinks list */
+  }
+  
+  .drinks-list li {
+    margin: 10px;
+    text-align: center;
+    flex: 0 0 calc(25% - 20px); /* Adjust the width based on the number of items per row */
+  }
+  
+  .drinks-list img {
+    border-radius: 10px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  .drinks-list p {
+    margin: 5px 0;
+  }
+
+
+
+  

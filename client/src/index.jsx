@@ -6,7 +6,7 @@ import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
-import CartPage from './components/CartPage';
+import Menu from './components/Menu';
 import VerifyUser from "./components/VerifyUser";
 import AuthDebugger from "./components/AuthDebugger";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
@@ -50,11 +50,11 @@ root.render(
         <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/Menu" element={<Menu />} />
           <Route path="/Contact" element={<Contact />} />
           <Route path="/verify-user" element={<VerifyUser />} />
           <Route
-            path="app"
+            path="/app"
             element={
               <RequireAuth>
                 <AppLayout />

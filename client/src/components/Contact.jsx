@@ -1,11 +1,12 @@
 import React from 'react';
+import "../style/contact.css";
 
 export default function Contact() {
   return (
     <form>
       <div>
         <p>
-          <strong>Please input your personal information</strong>
+          <h1>Contact Us</h1>
         </p>
         <label htmlFor="firstName">First Name:</label>
         <input type="text" id="firstName" />

@@ -54,13 +54,12 @@ app.delete("/user/:userId", requireAuth, async (req, res) => {
 
 app.put("/user/:userId", requireAuth, async (req, res) => {
   const userId = parseInt(req.params.userId);
-  const { firstName, lastName, address, email } = req.body;
+  const { name, address, email } = req.body;
   try {
     const updatedUser = await prisma.user.update({
       where: { userId },
       data: {
-        firstName,
-        lastName,
+        name,
         address,
         email,
       },
@@ -72,6 +71,33 @@ app.put("/user/:userId", requireAuth, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.post("/verify-user", requireAuth, async (req, res) => {
+  const auth0Id = req.auth.payload.sub;
+  const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
+  const name = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/name`];
+
+  const user = await prisma.user.findUnique({
+    where: {
+      auth0Id,
+    },
+  });
+
+  if (user) {
+    res.json(user);
+  } else {
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        auth0Id,
+        name,
+      },
+    });
+
+    res.json(newUser);
+  }
+});
+
 
 ////////////////////////////////////////////////////////////////////////
 //for order(get, update, delete, create)
@@ -104,7 +130,7 @@ app.post("/orders", requireAuth, async (req, res) => {
   if (!title) {
     res.status(400).send("title is required");
   } else {
-    const newItem = await prisma.todoItem.create({
+    const newItem = await prisma.order.create({
       data: {
         title,
         user: { connect: { auth0Id } },
@@ -159,7 +185,7 @@ app.get("/orders/:orderId", requireAuth, async (req, res) => {
 app.put("/orders/:orderId", requireAuth, async (req, res) => {
   const id = req.params.id;
   const { title } = req.body;
-  const updatedItem = await prisma.todoItem.update({
+  const updatedItem = await prisma.order.update({
     where: {
       id,
     },
@@ -182,6 +208,50 @@ app.get("/products", async (req, res) => {
   }
 });
 
+app.post("/products", async (req, res) => {
+  const { productName, description, price, imageUrl } = req.body;
+
+  try {
+    const newProduct = await prisma.product.create({
+      data: {
+        productName,
+        description,
+        price,
+        imageUrl,
+      },
+    });
+
+    res.status(201).json(newProduct);
+  } catch (error) {
+    console.error("Error creating product:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
+app.put("/products/:productId", async (req, res) => {
+  const productId = parseInt(req.params.productId);
+  const { productName, description, price, imageUrl } = req.body;
+
+  try {
+    const updatedProduct = await prisma.product.update({
+      where: {
+        productId,
+      },
+      data: {
+        productName,
+        description,
+        price,
+        imageUrl,
+      },
+    });
+
+    res.json(updatedProduct);
+  } catch (error) {
+    console.error("Error updating product:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 app.delete("/products/:productId", async (req, res) => {
   const productId = parseInt(req.params.productId);
 
@@ -200,34 +270,7 @@ app.delete("/products/:productId", async (req, res) => {
 });
 
 
-// this endpoint is used by the client to verify the user status and to make sure the user is registered in our database once they signup with Auth0
-// if not registered in our database we will create it.
-// if the user is already registered we will return the user information
-app.post("/verify-user", requireAuth, async (req, res) => {
-  const auth0Id = req.auth.payload.sub;
-  const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
-  const name = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/name`];
 
-  const user = await prisma.user.findUnique({
-    where: {
-      auth0Id,
-    },
-  });
-
-  if (user) {
-    res.json(user);
-  } else {
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        auth0Id,
-        name,
-      },
-    });
-
-    res.json(newUser);
-  }
-});
 
 app.listen(8000, () => {
   console.log("Server running on http://localhost:8000 🎉 🚀");

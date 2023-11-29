@@ -5,13 +5,15 @@ import AppLayout from "./components/AppLayout";
 import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
-import Cart from './components/Cart';
+import Contact from "./components/Contact";
+import CartPage from './components/CartPage';
 import VerifyUser from "./components/VerifyUser";
 import AuthDebugger from "./components/AuthDebugger";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
 import { AuthTokenProvider } from "./AuthTokenContext";
 import "./style/normalize.css";
 import "./style/index.css";
+
 
 const container = document.getElementById("root");
 
@@ -46,25 +48,24 @@ root.render(
       
       <AuthTokenProvider>
         <BrowserRouter>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/verify-user" element={<VerifyUser />} />
-            <Route
-              path="app"
-              element={
-                //(the protected page)
-                // if i do not have account before, and enter the app, then it will back to the layout page
-                <RequireAuth>
-                  <AppLayout />
-                </RequireAuth>
-              }
-            >
-              <Route index element={<Profile />} />
-  
-              <Route path="debugger" element={<AuthDebugger />} />
-            </Route>
-            <Route path="*" element={<NotFound />} />
-          </Routes>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/CartPage" element={<CartPage />} />
+          <Route path="/Contact" element={<Contact />} />
+          <Route path="/verify-user" element={<VerifyUser />} />
+          <Route
+            path="app"
+            element={
+              <RequireAuth>
+                <AppLayout />
+              </RequireAuth>
+            }
+          >
+            <Route index element={<Profile />} />
+            <Route path="debugger" element={<AuthDebugger />} />
+          </Route>
+          <Route path="*" element={<NotFound />} />
+        </Routes>
         </BrowserRouter>
       </AuthTokenProvider>
     </Auth0Provider>

@@ -4,7 +4,6 @@ import { useAuthToken } from "../AuthTokenContext";
 export default function AuthDebugger() {
   const { user } = useAuth0();
   const { accessToken } = useAuthToken();
-  //每次需要access token 的时候就call useAuthToken()， 然后就可以把token 给api
 
   return (
     <div>

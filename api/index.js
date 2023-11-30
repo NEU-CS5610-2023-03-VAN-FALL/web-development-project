@@ -42,22 +42,13 @@ app.get("/users", requireAuth, async (req, res) => {
   res.json(user);
 });
 
-app.delete("/user/:userId", requireAuth, async (req, res) => {
-  const userId = parseInt(req.params.userId);
-  const deletedUser = await prisma.user.delete({
-    where: {
-      userId,
-    },
-  });
-  res.json(deletedUser);
-});
 
-app.put("/user/:userId", requireAuth, async (req, res) => {
-  const userId = parseInt(req.params.userId);
+app.put("/users/:auth0Id", requireAuth, async (req, res) => {
+  const auth0Id = req.auth.payload.sub;
   const { name, address, email } = req.body;
   try {
     const updatedUser = await prisma.user.update({
-      where: { userId },
+      where: { auth0Id },
       data: {
         name,
         address,
@@ -72,6 +63,7 @@ app.put("/user/:userId", requireAuth, async (req, res) => {
   }
 });
 
+//有问题
 app.post("/verify-user", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
   const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
@@ -86,15 +78,21 @@ app.post("/verify-user", requireAuth, async (req, res) => {
   if (user) {
     res.json(user);
   } else {
-    const newUser = await prisma.user.create({
-      data: {
-        email,
-        auth0Id,
-        name,
-      },
-    });
-
-    res.json(newUser);
+    try {
+      const newUser = await prisma.user.create({
+        data: {
+          auth0Id,
+          name,
+          email,
+          
+        },
+      });
+    
+      res.json(newUser);
+    } catch (error) {
+      console.error("Error creating user:", error);
+      res.status(500).json({ error: "Internal server error" });
+    }
   }
 });
 
@@ -105,7 +103,7 @@ app.get("/orders", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
   try {
-    const user = await prisma.user.findUnique({
+    const user = await prisma.user.findMany({
       where: {
         auth0Id,
       },
@@ -121,44 +119,26 @@ app.get("/orders", requireAuth, async (req, res) => {
   }
 });
 
-
+// 有问题
 app.post("/orders", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
-  const { title } = req.body;
+  const { products, totalAmount} = req.body;
 
-  if (!title) {
+  if (!products && !totalAmount) {
     res.status(400).send("title is required");
   } else {
-    const newItem = await prisma.order.create({
+    const newOrder = await prisma.order.create({
       data: {
-        title,
+        products,
+        totalAmount,
         user: { connect: { auth0Id } },
       },
     });
 
-    res.status(201).json(newItem);
+    res.status(201).json(newOrder);
   }
 });
-
-
-app.delete("/orders/:orderId", requireAuth, async (req, res) => {
-  const orderId = parseInt(req.params.orderId);
-
-  try {
-    const deletedOrder = await prisma.order.delete({
-      where: {
-        orderId,
-      },
-    });
-
-    res.json(deletedOrder);
-  } catch (error) {
-    console.error("Error deleting order:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
 
 
 app.get("/orders/:orderId", requireAuth, async (req, res) => {
@@ -182,19 +162,7 @@ app.get("/orders/:orderId", requireAuth, async (req, res) => {
 });
 
 
-app.put("/orders/:orderId", requireAuth, async (req, res) => {
-  const id = req.params.id;
-  const { title } = req.body;
-  const updatedItem = await prisma.order.update({
-    where: {
-      id,
-    },
-    data: {
-      title,
-    },
-  });
-  res.json(updatedItem);
-});
+
 
 ////////////////////////////////////////////////////////////////////////
 //for product(get, delete )
@@ -207,6 +175,27 @@ app.get("/products", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
+app.get("/most-popular-drink", async (req, res) => {
+  try {
+    const popularProducts = await prisma.product.findMany({
+      include: {
+        orders: true,
+      },
+    });
+    popularProducts.sort((a, b) => b.orders.length - a.orders.length);
+    const mostPopularDrink = {
+      productName: popularProducts[0].productName,
+      price: popularProducts[0].price,
+      imageUrl: popularProducts[0].imageUrl,
+    };
+    res.json(mostPopularDrink);
+  } catch (error) {
+    console.error("Error fetching most popular drink:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 app.post("/products", async (req, res) => {
   const { productName, description, price, imageUrl } = req.body;

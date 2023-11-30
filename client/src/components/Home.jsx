@@ -9,6 +9,7 @@ export default function Home() {
   const navigate = useNavigate();
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const signUp = () => loginWithRedirect({ screen_hint: "signup" });
+  const [popularDrinks, setPopularDrinks] = useState([]);
 
   const order = async () => {
     if (isAuthenticated) {
@@ -21,6 +22,7 @@ export default function Home() {
       }
     }
   };
+
 
   const handleMenuClick = () => {
     navigate('/Menu');
@@ -76,6 +78,24 @@ export default function Home() {
               Order
             </button>
           </li>
+        </ul>
+      </div>
+
+      <div className="popular-drinks-container">
+        <h2>Most Popular Drinks</h2>
+        <ul className="popular-drinks-list">
+          {popularDrinks.map((drink) => (
+            <li key={drink.productId}>
+              <img
+                src={drink.imageUrl}
+                alt={drink.productName}
+                width="150"
+                height="150"
+
+              />
+              <p>{drink.productName}</p>
+            </li>
+          ))}
         </ul>
       </div>
 

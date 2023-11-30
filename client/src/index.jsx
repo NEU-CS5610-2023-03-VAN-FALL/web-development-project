@@ -54,7 +54,7 @@ root.render(
           <Route path="/Contact" element={<Contact />} />
           <Route path="/verify-user" element={<VerifyUser />} />
           <Route
-            path="/app"
+            path="app"
             element={
               <RequireAuth>
                 <AppLayout />

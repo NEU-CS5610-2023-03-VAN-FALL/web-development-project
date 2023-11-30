@@ -33,14 +33,20 @@ app.get("/ping", (req, res) => {
 app.get("/users", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
-  const user = await prisma.user.findUnique({
-    where: {
-      auth0Id,
-    },
-  });
+  try {
+    const user = await prisma.user.findUnique({
+      where: {
+        auth0Id,
+      },
+    });
 
-  res.json(user);
+    res.json(user);
+  } catch (error) {
+    console.error("Error fetching user:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
 });
+
 
 
 app.put("/users/:auth0Id", requireAuth, async (req, res) => {

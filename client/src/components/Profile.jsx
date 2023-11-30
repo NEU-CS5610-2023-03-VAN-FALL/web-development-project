@@ -2,16 +2,38 @@ import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
 
 export default function Profile() {
-  const {user, getAccessTokenSilently } = useAuth0();
-  const [name, setName] = useState(user.name);
-  const [address, setAddress] = useState(user.address);
-  const [email, setEmail] = useState(user.email);
-  
+  const { user, getAccessTokenSilently } = useAuth0();
+  const [userData, setUserData] = useState(null);
+  const [name, setName] = useState("");
+  const [address, setAddress] = useState("");
+  const [email, setEmail] = useState("");
+
   useEffect(() => {
-    setName(user.name);
-    setAddress(user.address);
-    setEmail(user.email);
-  }, [user.name, user.address, user.email]);
+    const fetchUserProfile = async () => {
+      try {
+        const accessToken = await getAccessTokenSilently();
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
+          headers: {
+            Authorization: `Bearer ${accessToken}`,
+          },
+        });
+
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+
+        const userData = await response.json();
+        setUserData(userData);
+        setName(userData.name || "");
+        setAddress(userData.address || "");
+        setEmail(userData.email || "");
+      } catch (error) {
+        console.error("Error fetching user profile:", error);
+      }
+    };
+
+    fetchUserProfile();
+  }, [getAccessTokenSilently, user.sub]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -46,6 +68,10 @@ export default function Profile() {
       console.error("Error updating profile", error);
     }
   };
+
+  if (!userData) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>

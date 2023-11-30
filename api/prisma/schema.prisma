@@ -21,12 +21,12 @@ model Order{
 }
 
 model User {
-  userId        Int      @id @default(autoincrement())
-  email        String   @unique
-  auth0Id      String   @unique @default("")
-  name   String    
-  address      String   
-  orders       Order[] 
+  userId        Int           @id         @default(autoincrement())
+  email         String        @unique
+  auth0Id       String        @unique     @default("")
+  name          String?                    @default("") 
+  address       String?                    @default("")
+  orders        Order[]                   
 }
 
 model Product{

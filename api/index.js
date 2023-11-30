@@ -52,16 +52,16 @@ app.get("/users", requireAuth, async (req, res) => {
 app.put("/users/:auth0Id", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
   const { name, address, email } = req.body;
-  try {
-    const updatedUser = await prisma.user.update({
-      where: { auth0Id },
-      data: {
-        name,
-        address,
-        email,
-      },
-    });
+  const updatedUser = await prisma.user.update({
+    where: { auth0Id },
+    data: {
+      name,
+      address,
+      email,
+    },
+  });
 
+  try {
     res.json(updatedUser);
   } catch (error) {
     console.error("Error updating user:", error);
@@ -75,6 +75,8 @@ app.post("/verify-user", requireAuth, async (req, res) => {
   const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
   const name = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/name`];
 
+  console.log(req.auth.payload);
+
   const user = await prisma.user.findUnique({
     where: {
       auth0Id,
@@ -84,21 +86,15 @@ app.post("/verify-user", requireAuth, async (req, res) => {
   if (user) {
     res.json(user);
   } else {
-    try {
-      const newUser = await prisma.user.create({
-        data: {
-          auth0Id,
-          name,
-          email,
-          
-        },
-      });
-    
-      res.json(newUser);
-    } catch (error) {
-      console.error("Error creating user:", error);
-      res.status(500).json({ error: "Internal server error" });
-    }
+    const newUser = await prisma.user.create({
+      data: {
+        email,
+        auth0Id,
+        name,
+      },
+    });
+
+    res.json(newUser);
   }
 });
 

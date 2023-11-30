@@ -22,6 +22,9 @@ export default function AppLayout() {
               <Link to="/app">Profile</Link>
             </li>
             <li>
+              <Link to="/app/order">Order Now</Link>
+            </li>
+            <li>
               <Link to="/app/order">OrderHistory</Link>
             </li>
             <li>

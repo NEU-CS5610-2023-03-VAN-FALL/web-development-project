@@ -127,26 +127,26 @@ app.get("/orders", requireAuth, async (req, res) => {
 });
 
 
-// 有问题
-app.post("/orders", requireAuth, async (req, res) => {
-  const auth0Id = req.auth.payload.sub;
+// // 有问题
+// app.post("/orders", requireAuth, async (req, res) => {
+//   const auth0Id = req.auth.payload.sub;
 
-  const { products, totalAmount} = req.body;
+//   const { products, totalAmount} = req.body;
 
-  if (!products && !totalAmount) {
-    res.status(400).send("title is required");
-  } else {
-    const newOrder = await prisma.order.create({
-      data: {
-        products,
-        totalAmount,
-        user: { connect: { auth0Id } },
-      },
-    });
+//   if (!products && !totalAmount) {
+//     res.status(400).send("title is required");
+//   } else {
+//     const newOrder = await prisma.order.create({
+//       data: {
+//         products,
+//         totalAmount,
+//         user: { connect: { auth0Id } },
+//       },
+//     });
 
-    res.status(201).json(newOrder);
-  }
-});
+//     res.status(201).json(newOrder);
+//   }
+// });
 
 
 app.get("/orders/:orderId", requireAuth, async (req, res) => {
@@ -182,25 +182,25 @@ app.get("/products", async (req, res) => {
   }
 });
 
-app.get("/most-popular-drink", async (req, res) => {
-  try {
-    const popularProducts = await prisma.product.findMany({
-      include: {
-        orders: true,
-      },
-    });
-    popularProducts.sort((a, b) => b.orders.length - a.orders.length);
-    const mostPopularDrink = {
-      productName: popularProducts[0].productName,
-      price: popularProducts[0].price,
-      imageUrl: popularProducts[0].imageUrl,
-    };
-    res.json(mostPopularDrink);
-  } catch (error) {
-    console.error("Error fetching most popular drink:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
+// app.get("/most-popular-drink", async (req, res) => {
+//   try {
+//     const popularProducts = await prisma.product.findMany({
+//       include: {
+//         orders: true,
+//       },
+//     });
+//     popularProducts.sort((a, b) => b.orders.length - a.orders.length);
+//     const mostPopularDrink = {
+//       productName: popularProducts[0].productName,
+//       price: popularProducts[0].price,
+//       imageUrl: popularProducts[0].imageUrl,
+//     };
+//     res.json(mostPopularDrink);
+//   } catch (error) {
+//     console.error("Error fetching most popular drink:", error);
+//     res.status(500).json({ error: "Internal server error" });
+//   }
+// });
 
 
 app.post("/products", async (req, res) => {

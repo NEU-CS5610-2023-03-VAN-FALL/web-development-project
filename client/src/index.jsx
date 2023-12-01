@@ -65,7 +65,10 @@ root.render(
           >
             <Route index element={<Profile />} />
             <Route path="orderHistory" element={<OrderHistory />} />
-            <Route path="orderDetail" element={<OrderDetail />} />
+            <Route
+            path="orderHistory/:orderId"
+            element={<OrderDetail />}
+          />
             <Route path="debugger" element={<AuthDebugger />} />
           </Route>
           <Route path="*" element={<NotFound />} />

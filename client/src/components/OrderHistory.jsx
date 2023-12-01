@@ -46,8 +46,8 @@ export default function OrderHistory() {
           >
             <div className="repository-row">
               <div className="order-details">
-                <div className="order-date">{order.orderDate}</div>
-                <div className="total-amount">{order.totalAmount}</div>
+                <div className="order-date">Order Date:    {order.orderDate}</div>
+                <div className="total-amount">Total Amount:    {order.totalAmount}</div>
               </div>
               {/* Add other details as needed */}
             </div>

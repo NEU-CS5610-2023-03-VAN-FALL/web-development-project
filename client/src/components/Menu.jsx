@@ -9,7 +9,6 @@ export default function Menu() {
     const navigate = useNavigate();
     const { isAuthenticated, loginWithRedirect } = useAuth0();
     const signUp = () => loginWithRedirect({ screen_hint: "signup" });
-    const [cart, setCart] = useState({});
     const [drinks, setDrinks] = useState([]);
 
     const order = async () => {

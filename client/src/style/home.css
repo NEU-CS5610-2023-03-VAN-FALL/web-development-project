@@ -39,34 +39,32 @@
     position: relative;
   }
 
-.drinks-container {
+  .popular-drinks-container {
     margin-top: 20px;
-  }
-  
-  .drinks-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-around;
-    max-width: 800px; /* Set a maximum width to control the number of items per row */
-    margin: 0 auto; /* Center the drinks list */
-  }
-  
-  .drinks-list li {
-    margin: 10px;
     text-align: center;
-    flex: 0 0 calc(25% - 20px); /* Adjust the width based on the number of items per row */
   }
   
-  .drinks-list img {
-    border-radius: 10px;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  .popular-drinks-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
   }
   
-  .drinks-list p {
+  .popular-drink-details {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  
+  .popular-drink-details img {
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+  }
+  
+  .popular-drink-details p {
     margin: 5px 0;
   }
-
-
+  
 
   

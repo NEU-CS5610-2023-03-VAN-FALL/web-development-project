@@ -3,24 +3,28 @@
 .repositories-list {
   list-style: none;
   padding: 0;
+  max-width: max-content;
 }
 
 .repository-row-li {
-  border: 1px solid #eaeaea;
-  margin-bottom: 16px;
-  padding: 16px;
+  height: 60px;
+  border: 1px solid rgb(0, 81, 255);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.5s;
   cursor: pointer;
-  transition: background-color 0.3s ease;
+  background-color: white;
 }
 
 .repository-row-li:hover {
-  background-color: #f7f7f7;
+  background-color: rgb(128, 249, 117);
 }
 
 .repository-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  padding: 10px;
 }
 
 .order-details {
@@ -34,7 +38,5 @@
 }
 
 .total-amount {
-  color: #ff4500; /* or any other color you prefer */
+  color: #555;
 }
-
-/* You can add more specific styles as needed */

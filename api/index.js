@@ -97,8 +97,6 @@ app.post("/verify-user", requireAuth, async (req, res) => {
 });
 
 
-////////////////////////////////////////////////////////////////////////
-//for order(get, update, delete, create)
 app.get("/orders", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
@@ -170,8 +168,6 @@ app.get("/orders/:orderId", requireAuth, async (req, res) => {
 });
 
 
-////////////////////////////////////////////////////////////////////////
-//for product(get, delete )
 app.get("/products", async (req, res) => {
   try {
     const products = await prisma.product.findMany();
@@ -182,25 +178,35 @@ app.get("/products", async (req, res) => {
   }
 });
 
-// app.get("/most-popular-drink", async (req, res) => {
-//   try {
-//     const popularProducts = await prisma.product.findMany({
-//       include: {
-//         orders: true,
-//       },
-//     });
-//     popularProducts.sort((a, b) => b.orders.length - a.orders.length);
-//     const mostPopularDrink = {
-//       productName: popularProducts[0].productName,
-//       price: popularProducts[0].price,
-//       imageUrl: popularProducts[0].imageUrl,
-//     };
-//     res.json(mostPopularDrink);
-//   } catch (error) {
-//     console.error("Error fetching most popular drink:", error);
-//     res.status(500).json({ error: "Internal server error" });
-//   }
-// });
+
+app.get("/most-popular-drink", async (req, res) => {
+  try {
+    const popularProducts = await prisma.product.findMany({
+      include: {
+        orders: true,
+      },
+    });
+
+    // Sort products by the number of orders in descending order
+    popularProducts.sort((a, b) => b.orders.length - a.orders.length);
+
+    if (popularProducts.length > 0) {
+      const mostPopularDrink = {
+        productName: popularProducts[0].productName,
+        price: popularProducts[0].price,
+        imageUrl: popularProducts[0].imageUrl,
+      };
+
+      res.json(mostPopularDrink);
+    } else {
+      res.json({ message: "No products found" });
+    }
+  } catch (error) {
+    console.error("Error fetching most popular drink:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
+
 
 
 app.post("/products", async (req, res) => {
@@ -263,8 +269,6 @@ app.delete("/products/:productId", async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
 
 
 app.listen(8000, () => {

@@ -9,7 +9,26 @@ export default function Home() {
   const navigate = useNavigate();
   const { isAuthenticated, loginWithRedirect } = useAuth0();
   const signUp = () => loginWithRedirect({ screen_hint: "signup" });
-  const [popularDrinks, setPopularDrinks] = useState([]);
+  const [mostPopularDrink, setMostPopularDrink] = useState({});
+
+  useEffect(() => {
+    // Fetch popular drinks data here
+    const fetchPopularDrinks = async () => {
+      try {
+        const response = await fetch(`${process.env.REACT_APP_API_URL}/most-popular-drink`);
+        if (response.ok) {
+          const data = await response.json();
+          setMostPopularDrink(data);
+        } else {
+          console.error('Failed to fetch popular drinks');
+        }
+      } catch (error) {
+        console.error('Error fetching popular drinks:', error);
+      }
+    };
+
+    fetchPopularDrinks();
+  }, []);
 
   const order = async () => {
     if (isAuthenticated) {
@@ -81,23 +100,21 @@ export default function Home() {
         </ul>
       </div>
 
+      
       <div className="popular-drinks-container">
-        <h2>Most Popular Drinks</h2>
-        <ul className="popular-drinks-list">
-          {popularDrinks.map((drink) => (
-            <li key={drink.productId}>
-              <img
-                src={drink.imageUrl}
-                alt={drink.productName}
-                width="150"
-                height="150"
-
-              />
-              <p>{drink.productName}</p>
-            </li>
-          ))}
-        </ul>
+        <h2>Most Popular Drink</h2>
+        <div className="popular-drink-details">
+          <img
+            src={mostPopularDrink.imageUrl}
+            alt={mostPopularDrink.productName}
+            width="550"
+            height="550"
+          />
+          <p>{mostPopularDrink.productName}</p>
+          <p>Price: ${mostPopularDrink.price}</p>
+        </div>
       </div>
+
 
     </div>
 );

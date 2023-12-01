@@ -1,0 +1,40 @@
+/* orderHistory.css */
+
+.repositories-list {
+  list-style: none;
+  padding: 0;
+}
+
+.repository-row-li {
+  border: 1px solid #eaeaea;
+  margin-bottom: 16px;
+  padding: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.repository-row-li:hover {
+  background-color: #f7f7f7;
+}
+
+.repository-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-date {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.total-amount {
+  color: #ff4500; /* or any other color you prefer */
+}
+
+/* You can add more specific styles as needed */

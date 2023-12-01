@@ -28,8 +28,7 @@ app.get("/ping", (req, res) => {
   res.send("pong");
 });
 
-////////////////////////////////////////////////////////////////////////
-//for user(get, update, delete) 
+
 app.get("/users", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
@@ -46,7 +45,6 @@ app.get("/users", requireAuth, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
 
 
 app.put("/users/:auth0Id", requireAuth, async (req, res) => {
@@ -69,7 +67,7 @@ app.put("/users/:auth0Id", requireAuth, async (req, res) => {
   }
 });
 
-//有问题
+
 app.post("/verify-user", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
   const email = req.auth.payload[`${process.env.AUTH0_AUDIENCE}/email`];
@@ -105,12 +103,19 @@ app.get("/orders", requireAuth, async (req, res) => {
   const auth0Id = req.auth.payload.sub;
 
   try {
-    const user = await prisma.user.findMany({
+    const user = await prisma.user.findUnique({
       where: {
         auth0Id,
       },
-      include: {
-        orders: true,
+      select: {
+        orders: {
+          select: {
+            orderId:true,
+            orderDate: true,
+            totalAmount: true,
+            
+          },
+        },
       },
     });
 
@@ -120,6 +125,7 @@ app.get("/orders", requireAuth, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
+
 
 // 有问题
 app.post("/orders", requireAuth, async (req, res) => {
@@ -162,8 +168,6 @@ app.get("/orders/:orderId", requireAuth, async (req, res) => {
     res.status(500).json({ error: "Internal server error" });
   }
 });
-
-
 
 
 ////////////////////////////////////////////////////////////////////////

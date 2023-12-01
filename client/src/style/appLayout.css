@@ -11,11 +11,11 @@
   .header {
     width: 100%;
     border: 1px solid orange;
-  
     display: flex;
     align-items: center;
     justify-content: space-around;
     margin: 5px 0;
+    
   }
   
   .content {
@@ -29,10 +29,15 @@
     display: flex;
     justify-content: space-evenly;
     padding: 0;
+   
   }
   
   .menu-list li {
-    margin-right: 8px;
+    margin-right: 55px;
+    position: sticky;
+    top: 0;
+    background-color:antiquewhite;
+    font-size: 20px;
   }
   
   .exit-button {

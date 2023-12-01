@@ -7,6 +7,8 @@ import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
 import Menu from './components/Menu';
+import OrderHistory from './components/OrderHistory';
+import OrderDetail from './components/OrderDetail';
 import VerifyUser from "./components/VerifyUser";
 import AuthDebugger from "./components/AuthDebugger";
 import { Auth0Provider, useAuth0 } from "@auth0/auth0-react";
@@ -62,6 +64,8 @@ root.render(
             }
           >
             <Route index element={<Profile />} />
+            <Route path="orderHistory" element={<OrderHistory />} />
+            <Route path="orderDetail" element={<OrderDetail />} />
             <Route path="debugger" element={<AuthDebugger />} />
           </Route>
           <Route path="*" element={<NotFound />} />

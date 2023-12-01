@@ -5,6 +5,7 @@ export default function Contact() {
   return (
     <form>
       <div>
+      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
         <p>
           <h1>Contact Us</h1>
         </p>
@@ -33,9 +34,9 @@ export default function Contact() {
 
       <div>
         <p>
-          <strong>Please select appointment date and time</strong>
+          <strong>Date of Birth</strong>
         </p>
-        <input type="datetime-local" id="time" name="time" />
+        <input type="date" id="time" name="time" />
       </div>
       <br />
 

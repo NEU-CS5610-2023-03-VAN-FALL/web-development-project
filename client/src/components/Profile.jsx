@@ -93,7 +93,7 @@ export default function Profile() {
       <div>
         <p>Email verified: {user.email_verified?.toString()}</p>
       </div>
-      <button onClick={handleUpdateProfile}>Save</button>
+      <button  onClick={handleUpdateProfile}>Save</button>
     </div>
   );
 }

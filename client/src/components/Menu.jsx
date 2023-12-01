@@ -1,4 +1,4 @@
-import "../style/home.css";
+import "../style/menu.css";
 import { Link } from 'react-router-dom';
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
@@ -43,6 +43,7 @@ export default function Menu() {
 
     return(
     <div className="Home">
+      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
         <header className="header">
           <h1 className="title">Welcome to Zhimin Drink Shop!</h1>
         </header>
@@ -105,7 +106,7 @@ export default function Menu() {
                 height="150"
                 onClick={() => alert(`Product ID: ${drink.productId}\nProduct Name: ${drink.productName}\nDescription: ${drink.description}\nPrice: ${drink.price}`)}
               />
-              <p>{drink.productName}</p>
+              <h3>{drink.productName}</h3>
               <p>${drink.price}</p>
 
             </li>

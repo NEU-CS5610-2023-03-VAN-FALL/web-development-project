@@ -1,0 +1,86 @@
+
+  
+  /* Container Styles */
+  .Menu {
+    background-color: #f0f0f0;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+  }
+  
+  /* Header Styles */
+  .header {
+    
+    color:#333; /* Set your desired header text color */
+    text-align: center;
+    padding: 1rem;
+  }
+  
+  .title {
+    margin: 0;
+  }
+  
+  /* Menu Styles */
+  .menu {
+    margin-top: 1rem;
+  }
+  
+  .menu-list {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin: 0;
+    padding: 0;
+  }
+  
+  .menu-list li {
+    margin: 0 1rem;
+    
+  }
+ 
+  
+  .btn-primary {
+    background-color:goldenrod; /* Set your desired primary button background color */
+    color: #fff; /* Set your desired primary button text color */
+    padding: 0.4rem 0.7rem;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 16px;
+  }
+  
+  /* Drinks Container Styles */
+  .drinks-container {
+    margin-top: 2rem;
+  }
+  
+  .drinks-list {
+    list-style: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly; /* Align items evenly horizontally */
+    margin: 0;
+    padding: 0;
+  }
+  
+  .drinks-list li {
+    width: calc(25% - 2rem); /* Set width for each item, considering margin */
+    margin: 1rem;
+    text-align: center;
+    box-sizing: border-box; /* Include padding and border in the element's total width and height */
+  }
+  
+  .drinks-list img {
+    cursor: pointer;
+    transition: transform 0.3s ease-in-out;
+    max-width: 100%; 
+  }
+  
+  .drinks-list img:hover {
+    transform: scale(1.1);
+  }
+  
+ 
+  

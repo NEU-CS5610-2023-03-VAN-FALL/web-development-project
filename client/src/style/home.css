@@ -1,3 +1,22 @@
+.Home {
+  background-color: #f0f0f0; /* Set your desired background color */
+  background-image: url('https://marketplace.canva.com/EAFuKIbGJJg/1/0/900w/canva-green-watercolor-instagram-story-background-MpipxzoqTl0.jpg'); 
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  min-height: 100vh; /* Set a minimum height to cover the entire viewport */
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
+}
+
+.logo {
+  position: absolute;
+  top: 10px; /* Adjust the top position as needed */
+  left: 10px; /* Adjust the left position as needed */
+  width: 100px; /* Set your desired width */
+  height: auto; /* Maintain aspect ratio */
+}
+
 
 .header {
     
@@ -9,16 +28,20 @@
 }
   
 .title {
-      font-family: Verdana, Geneva, Tahoma, sans-serif;
-      font-style: italic;
-      font-size: 50px;
+  font-style: italic;
+  font-size: 50px;
+  position: sticky;
+  background-color: transparent; /* Remove background color */
+  border: none; /* Remove border */
+  padding: 0; /* Remove padding */
 }
+
 
 .menu {
       position: sticky;
       top: 0;
-      background-color:antiquewhite;
-      font-size: 20px;
+      background-color:blanchedalmond;
+      font-size: 100px;
    
 }
 
@@ -32,11 +55,27 @@
       height: 100%;
 }
 
-.cart-icon {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
+
+  @keyframes sparkle {
+    0% {
+      color:chocolate;
+      transform: scale(1);
+    }
+    50% {
+      color: chocolate;
+      transform: scale(1.1);
+    }
+    100% {
+      color: chocolate;
+      transform: scale(1);
+    }
+  }
+  
+  .popular-drinks-container h2 {
+    font-size: 24px;
+    color: #333;
+    margin-bottom: 10px;
+    animation: sparkle 1.5s infinite; /* Adjust the duration as needed */
   }
 
   .popular-drinks-container {

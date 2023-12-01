@@ -1,5 +1,12 @@
 .app {
-    margin: 5px;
+  background-color: #f0f0f0; /* Set your desired background color */
+  background-image: url('https://marketplace.canva.com/EAFuKIbGJJg/1/0/900w/canva-green-watercolor-instagram-story-background-MpipxzoqTl0.jpg'); 
+  background-size: cover; /* Cover the entire container */
+  background-position: center; /* Center the background image */
+  min-height: 100vh; /* Set a minimum height to cover the entire viewport */
+  display: flex;
+  flex-direction: column; 
+  align-items: center;
   }
   
   .title {
@@ -53,4 +60,4 @@
     height: 100%;
     font-size: 36px;
   }
-  
+ 

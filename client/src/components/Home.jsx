@@ -49,6 +49,7 @@ export default function Home() {
 
   return (
     <div className="Home">
+      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
       <header className="header">
         <h1 className="title">Welcome to Zhimin Drink Shop!</h1>
       </header>
@@ -56,17 +57,17 @@ export default function Home() {
       <div className="menu">
         <ul className="menu-list">
           <li>
-          <button onClick={() => navigate('/')}className="btn-secondary">
+          <button onClick={() => navigate('/')}>
             Home
           </button>
           </li>
           <li>
-            <button onClick={handleMenuClick} className="btn-secondary">
+            <button onClick={handleMenuClick} >
               Menu
             </button>
           </li>
           <li>
-            <button onClick={() => navigate('/Contact')}className="btn-secondary">
+            <button onClick={() => navigate('/Contact')}>
               Contact Us
             </button>
           </li>
@@ -74,7 +75,7 @@ export default function Home() {
           {!isAuthenticated ? (
           
             <li>
-              <button onClick={loginWithRedirect} className="btn-primary">
+              <button onClick={loginWithRedirect} >
                 Login
               </button>
             </li>
@@ -87,13 +88,13 @@ export default function Home() {
           )}
 
           <li>
-            <button onClick={signUp} className="btn-secondary">
+            <button onClick={signUp} >
               Create Account
             </button>
           </li>
   
           <li>
-            <button onClick={order} className="btn-secondary">
+            <button onClick={order} >
               Order
             </button>
           </li>
@@ -107,11 +108,11 @@ export default function Home() {
           <img
             src={mostPopularDrink.imageUrl}
             alt={mostPopularDrink.productName}
-            width="550"
-            height="550"
+            width="500"
+            height="500"
           />
-          <p>{mostPopularDrink.productName}</p>
-          <p>Price: ${mostPopularDrink.price}</p>
+          <h3>{mostPopularDrink.productName}</h3>
+          <h3>Price: ${mostPopularDrink.price}</h3>
         </div>
       </div>
 

@@ -124,27 +124,55 @@ app.get("/orders", requireAuth, async (req, res) => {
   }
 });
 
+///////////////////////////////////////////////////
+app.post("/orders", requireAuth, async (req, res) => {
+  try {
+    const auth0Id = req.auth.payload.sub;
+    const { totalAmount, products } = req.body;
 
-// // 有问题
-// app.post("/orders", requireAuth, async (req, res) => {
-//   const auth0Id = req.auth.payload.sub;
+    // Find the user based on the auth0Id
+    const user = await prisma.user.findUnique({
+      where: { auth0Id },
+    });
 
-//   const { products, totalAmount} = req.body;
+    // Create a new order for the found user
+    const newOrder = await prisma.order.create({
+      data: {
+        orderDate: new Date(),
+        totalAmount,
+        user: {
+          connect: { userId: user.userId },
+        },
+      },
+    });
 
-//   if (!products && !totalAmount) {
-//     res.status(400).send("title is required");
-//   } else {
-//     const newOrder = await prisma.order.create({
-//       data: {
-//         products,
-//         totalAmount,
-//         user: { connect: { auth0Id } },
-//       },
-//     });
+    // Associate existing products with the order
+    const existingProducts = await Promise.all(
+      products.map(async (product) => {
+        const existingProduct = await prisma.product.findUnique({
+          where: { productId: product.productId },
+        });
+        return existingProduct;
+      })
+    );
 
-//     res.status(201).json(newOrder);
-//   }
-// });
+    await prisma.order.update({
+      where: { orderId: newOrder.orderId },
+      data: {
+        products: {
+          connect: existingProducts.map((existingProduct) => ({
+            productId: existingProduct.productId,
+          })),
+        },
+      },
+    });
+
+    res.json(newOrder);
+  } catch (error) {
+    console.error("Error creating order:", error);
+    res.status(500).json({ error: "Internal server error" });
+  }
+});
 
 
 app.get("/orders/:orderId", requireAuth, async (req, res) => {
@@ -208,67 +236,6 @@ app.get("/most-popular-drink", async (req, res) => {
 });
 
 
-
-app.post("/products", async (req, res) => {
-  const { productName, description, price, imageUrl } = req.body;
-
-  try {
-    const newProduct = await prisma.product.create({
-      data: {
-        productName,
-        description,
-        price,
-        imageUrl,
-      },
-    });
-
-    res.status(201).json(newProduct);
-  } catch (error) {
-    console.error("Error creating product:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-app.put("/products/:productId", async (req, res) => {
-  const productId = parseInt(req.params.productId);
-  const { productName, description, price, imageUrl } = req.body;
-
-  try {
-    const updatedProduct = await prisma.product.update({
-      where: {
-        productId,
-      },
-      data: {
-        productName,
-        description,
-        price,
-        imageUrl,
-      },
-    });
-
-    res.json(updatedProduct);
-  } catch (error) {
-    console.error("Error updating product:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
-
-app.delete("/products/:productId", async (req, res) => {
-  const productId = parseInt(req.params.productId);
-
-  try {
-    const deletedProduct = await prisma.product.delete({
-      where: {
-        productId,
-      },
-    });
-
-    res.json(deletedProduct);
-  } catch (error) {
-    console.error("Error deleting product:", error);
-    res.status(500).json({ error: "Internal server error" });
-  }
-});
 
 
 app.listen(8000, () => {

@@ -42,7 +42,7 @@ export default function Menu() {
       
 
     return(
-    <div className="Home">
+      <div className="Home">
       <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
         <header className="header">
           <h1 className="title">Welcome to Zhimin Drink Shop!</h1>
@@ -94,6 +94,7 @@ export default function Menu() {
             </li>
           </ul>
         </div>
+  
 
     <div className="drinks-container">
         <ul className="drinks-list">
@@ -104,16 +105,13 @@ export default function Menu() {
                 alt={drink.productName}
                 width="150"
                 height="150"
-                onClick={() => alert(`Product ID: ${drink.productId}\nProduct Name: ${drink.productName}\nDescription: ${drink.description}\nPrice: ${drink.price}`)}
+                onClick={() => alert(`Product ID: ${drink.id}\nProduct Name: ${drink.productName}\nDescription: ${drink.description}\nPrice: ${drink.price}`)}
               />
               <h3>{drink.productName}</h3>
-              <p>${drink.price}</p>
-
             </li>
             ))}
         </ul>
       </div>
     </div>
     )
-
 }

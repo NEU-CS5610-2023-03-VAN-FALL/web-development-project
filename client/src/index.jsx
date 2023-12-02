@@ -6,6 +6,7 @@ import Profile from "./components/Profile";
 import NotFound from "./components/NotFound";
 import Home from "./components/Home";
 import Contact from "./components/Contact";
+import Order from "./components/Order";
 import Menu from './components/Menu';
 import OrderHistory from './components/OrderHistory';
 import OrderDetail from './components/OrderDetail';
@@ -64,6 +65,7 @@ root.render(
             }
           >
             <Route index element={<Profile />} />
+            <Route path="order" element={<Order />} />
             <Route path="orderHistory" element={<OrderHistory />} />
             <Route
             path="orderHistory/:orderId"

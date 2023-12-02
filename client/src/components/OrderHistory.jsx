@@ -49,7 +49,7 @@ export default function OrderHistory() {
                 <div className="order-date">Order Date:    {order.orderDate}</div>
                 <div className="total-amount">Total Amount:    {order.totalAmount}</div>
               </div>
-              {/* Add other details as needed */}
+              
             </div>
           </li>
         ))}

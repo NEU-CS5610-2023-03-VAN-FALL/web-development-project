@@ -16,7 +16,7 @@ model Order{
   user        User     @relation(fields: [userId], references: [userId])
   userId      Int
   totalAmount Float
-  products    Product[]
+  products    Product[]  
    
 }
 
@@ -36,5 +36,6 @@ model Product{
   price         Float  
   imageUrl      String?
   orders        Order[]
+  
 
 }

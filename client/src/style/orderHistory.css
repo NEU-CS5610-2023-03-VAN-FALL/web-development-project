@@ -4,6 +4,7 @@
   list-style: none;
   padding: 0;
   max-width: max-content;
+  overflow: auto;
 }
 
 .repository-row-li {
@@ -39,4 +40,10 @@
 
 .total-amount {
   color: #555;
+}
+@media (max-width: 768px) {
+  .repository-row-li {
+    height: auto; /* Adjust height for smaller screens */
+  }
+
 }

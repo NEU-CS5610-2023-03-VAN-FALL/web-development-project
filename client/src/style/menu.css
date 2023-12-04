@@ -39,17 +39,15 @@
     margin: 0 1rem;
     
   }
- 
-  
-  .btn-primary {
-    background-color:goldenrod; 
-    color: #fff; 
-    padding: 0.4rem 0.7rem;
+  .enter-button {
+    background-color: #FF6347; /* Adjust the color based on your design */
+    color: white;
     border: none;
+    border-radius: 5px;
     cursor: pointer;
-    text-decoration: none;
-    font-size: 16px;
+    width: 150px
   }
+  
   
   /* Drinks Container Styles */
   .drinks-container {
@@ -76,6 +74,7 @@
     cursor: pointer;
     transition: transform 0.3s ease-in-out;
     max-width: 100%; 
+    
   }
   
   .drinks-list img:hover {

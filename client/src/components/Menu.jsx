@@ -62,7 +62,17 @@ export default function Menu() {
             </li>
             <li>
               <button onClick={() => navigate('/Contact')}className="btn-secondary">
-                Contact Us
+                Contact
+              </button>
+            </li>
+            <li>
+              <button onClick={order} className="btn-secondary">
+                Order
+              </button>
+            </li>
+            <li>
+              <button onClick={signUp} className="btn-secondary">
+                SignUp
               </button>
             </li>
   
@@ -75,23 +85,12 @@ export default function Menu() {
               </li>
             ) : (
               <li>
-                <Link to="/app" className="btn-primary">
-                  Enter App
-                </Link>
-              </li>
+              <button className="enter-button" onClick={() => navigate('/app')}>
+              Enter App
+              </button>
+            </li>
             )}
   
-            <li>
-              <button onClick={signUp} className="btn-secondary">
-                Create Account
-              </button>
-            </li>
-    
-            <li>
-              <button onClick={order} className="btn-secondary">
-                Order
-              </button>
-            </li>
           </ul>
         </div>
   

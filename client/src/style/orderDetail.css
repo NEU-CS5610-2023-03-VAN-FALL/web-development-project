@@ -55,15 +55,43 @@
 }
 
 .products-list img {
-  width: 80px;
-  height: 80px;
-  margin-right: 15px;
-}
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  max-width: 100%; 
 
+}
 .products-list div {
   flex: 1;
 }
 
 .products-list p {
   margin: 5px 0;
+}
+
+/* Media Queries for Responsive Design */
+
+@media (max-width: 600px) {
+  .orderDetail {
+    padding: 15px;
+  }
+
+  .products-list img {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+@media (max-width: 480px) {
+  .orderDetail h2 {
+    font-size: 24px;
+  }
+
+  .orderDetail p {
+    font-size: 14px;
+  }
+
+  .products-list li {
+    flex-direction: column;
+    align-items: flex-start;
+  }
 }

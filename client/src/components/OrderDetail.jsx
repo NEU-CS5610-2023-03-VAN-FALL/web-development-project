@@ -36,32 +36,38 @@ export default function OrderDetail() {
   
     return (
       <div className="orderDetail">
-        <Link to="/app/orderHistory"> ⬅️ Back to Order History</Link>
+        <Link to="/app/orderHistory" className="back-link">
+          ⬅️ Back to Order History
+        </Link>
         <h2>Order Details</h2>
-        <div>
+        <div className="order-info">
           <p>Order ID: {orderDetails.orderId}</p>
-        </div>
-        <div>
           <p>Order Date: {orderDetails.orderDate}</p>
-        </div>
-        <div>
           <p>Total Amount: {orderDetails.totalAmount}</p>
         </div>
-        
+  
         <div className="drinks-container">
           <ul className="drinks-list">
             {orderDetails.products && orderDetails.products.length > 0 ? (
               orderDetails.products.map((drink) => (
-                <li key={drink.id}>
+                <li key={drink.id} className="drink-item">
                   <img
                     src={drink.imageUrl}
                     alt={drink.productName}
                     width="150"
                     height="150"
                   />
-                  <p> ProductName : {drink.productName}</p>
-                  <p> Description : {drink.description}</p>
-                  <p> Price       : ${drink.price}</p>
+                  <div className="drink-info">
+                    <p>
+                      <strong>ProductName:</strong> {drink.productName}
+                    </p>
+                    <p>
+                      <strong>Description:</strong> {drink.description}
+                    </p>
+                    <p>
+                      <strong>Price:</strong> ${drink.price}
+                    </p>
+                  </div>
                 </li>
               ))
             ) : (

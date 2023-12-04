@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import "../style/profile.css";
 
 export default function Profile() {
   const { user, getAccessTokenSilently } = useAuth0();
@@ -74,7 +75,7 @@ export default function Profile() {
   }
 
   return (
-    <div>
+    <div className="profile-container">
       <div>
         <label>Name: </label>
         <input type="text" value={name} onChange={handleNameChange} />
@@ -93,7 +94,7 @@ export default function Profile() {
       <div>
         <p>Email verified: {user.email_verified?.toString()}</p>
       </div>
-      <button  onClick={handleUpdateProfile}>Save</button>
+      <button onClick={handleUpdateProfile}>Save</button>
     </div>
   );
 }

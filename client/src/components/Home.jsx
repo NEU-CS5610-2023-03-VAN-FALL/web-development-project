@@ -49,9 +49,9 @@ export default function Home() {
 
   return (
     <div className="Home">
-      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
+      {/* <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" /> */}
       <header className="header">
-        <h1 className="title">Welcome to Zhimin Drink Shop!</h1>
+        <h2 className="title">Zhimin Drink Shop</h2>
       </header>
   
       <div className="menu">
@@ -68,7 +68,17 @@ export default function Home() {
           </li>
           <li>
             <button onClick={() => navigate('/Contact')}>
-              Contact Us
+              Contact
+            </button>
+          </li>
+          <li>
+            <button onClick={order} >
+              Order
+            </button>
+          </li>
+          <li>
+            <button onClick={signUp} >
+              SignUp
             </button>
           </li>
 
@@ -81,23 +91,12 @@ export default function Home() {
             </li>
           ) : (
             <li>
-              <Link to="/app" className="btn-primary">
-                Enter App
-              </Link>
+              <button className="enter-button" onClick={() => navigate('/app')}>
+              Enter App
+              </button>
             </li>
+            
           )}
-
-          <li>
-            <button onClick={signUp} >
-              Create Account
-            </button>
-          </li>
-  
-          <li>
-            <button onClick={order} >
-              Order
-            </button>
-          </li>
         </ul>
       </div>
 

@@ -13,7 +13,7 @@
   /* Header Styles */
   .header {
     
-    color:#333; /* Set your desired header text color */
+    color:#333; 
     text-align: center;
     padding: 1rem;
   }
@@ -42,8 +42,8 @@
  
   
   .btn-primary {
-    background-color:goldenrod; /* Set your desired primary button background color */
-    color: #fff; /* Set your desired primary button text color */
+    background-color:goldenrod; 
+    color: #fff; 
     padding: 0.4rem 0.7rem;
     border: none;
     cursor: pointer;

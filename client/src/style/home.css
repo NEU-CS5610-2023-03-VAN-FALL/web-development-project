@@ -1,109 +1,148 @@
+/* Base styles for all screen sizes */
 .Home {
-  background-color: #f0f0f0; /* Set your desired background color */
+  background-color: #f0f0f0;
   background-image: url('https://marketplace.canva.com/EAFuKIbGJJg/1/0/900w/canva-green-watercolor-instagram-story-background-MpipxzoqTl0.jpg'); 
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the background image */
-  min-height: 100vh; /* Set a minimum height to cover the entire viewport */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+  min-height: 100vh;
   display: flex;
   flex-direction: column; 
   align-items: center;
+  padding: 20px;
 }
-
-.logo {
-  position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  left: 10px; /* Adjust the left position as needed */
-  width: 100px; /* Set your desired width */
-  height: auto; /* Maintain aspect ratio */
-}
-
 
 .header {
-    
-    font-size: medium;
-    border-bottom: 2px;
-    display: flex;
-    align-items: center;
-    justify-content: center; 
+  font-size: medium;
+  border-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  margin-bottom: 20px;
 }
   
 .title {
   font-style: italic;
   font-size: 50px;
   position: sticky;
-  background-color: transparent; /* Remove background color */
-  border: none; /* Remove border */
-  padding: 0; /* Remove padding */
+  background-color: transparent;
+  border: none; 
+  padding: 0; 
 }
 
-
 .menu {
-      position: sticky;
-      top: 0;
-      background-color:blanchedalmond;
-      font-size: 100px;
-   
+  
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 20px;
+  top: 0;
+  border-bottom: 2px;
+  padding: 10px 0;
 }
 
 .menu-list {
-      display: flex;
-      justify-content: space-evenly;
-      list-style-type: none;
-      margin: 0;
-      padding-left: 0;
-      align-items: center;
-      height: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  list-style-type: none;
+  margin: 0;
+  padding-left: 0;
+  align-items: center;
+  height: 100%;
+}
+.menu-list li button {
+  width: 150px; 
+
+}
+.menu-list li {
+  margin: 10px;
+}
+.enter-button {
+    background-color: #FF6347; /* Adjust the color based on your design */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 150px
+  }
+@keyframes sparkle {
+  0% {
+    color:chocolate;
+    transform: scale(1);
+  }
+  50% {
+    color: chocolate;
+    transform: scale(1.1);
+  }
+  100% {
+    color: chocolate;
+    transform: scale(1);
+  }
 }
 
+.popular-drinks-container {
+  margin-top: 20px;
+  text-align: center;
+}
 
-  @keyframes sparkle {
-    0% {
-      color:chocolate;
-      transform: scale(1);
-    }
-    50% {
-      color: chocolate;
-      transform: scale(1.1);
-    }
-    100% {
-      color: chocolate;
-      transform: scale(1);
-    }
+.popular-drinks-container h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+  animation: sparkle 1.5s infinite;
+}
+
+.popular-drink-details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 100%;
+  height: auto;
+  margin-bottom: 10px;
+}
+
+.popular-drink-details img {
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  margin-bottom: 10px;
+  max-width: 100%;
+  height: auto;
+}
+
+.popular-drink-details p {
+  margin: 5px 0;
+}
+
+/* Mobile */
+@media (max-width: 550px) {
+  .menu-list li {
+    flex-basis: 49.5%;
   }
-  
-  .popular-drinks-container h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-    animation: sparkle 1.5s infinite; /* Adjust the duration as needed */
+}
+
+/* Tablet */
+@media (min-width: 550px) and (max-width: 800px) {
+  .header {
+    padding: 3rem;
+  }
+  .menu-list li {
+    flex-basis: auto;
+    margin-bottom: 0;
+  }
+}
+
+/* Desktop */
+@media (min-width: 800px) {
+  .menu {
+    display: block;
   }
 
-  .popular-drinks-container {
-    margin-top: 20px;
-    text-align: center;
+  .menu-list li {
+    flex-basis: 32.5%;
   }
-  
-  .popular-drinks-container h2 {
-    font-size: 24px;
-    color: #333;
-    margin-bottom: 10px;
-  }
-  
-  .popular-drink-details {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-  
-  .popular-drink-details img {
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    margin-bottom: 10px;
-  }
-  
-  .popular-drink-details p {
-    margin: 5px 0;
-  }
-  
 
-  
+  .header {
+    padding: 3rem;
+  }
+}

@@ -13,7 +13,7 @@ export default function AppLayout() {
 
   return (
     <div className="app">
-      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
+      {/* <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" /> */}
       <div className="title">
         <h3>Zhimin Drink Shop</h3>
       </div>

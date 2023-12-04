@@ -43,9 +43,9 @@ export default function Menu() {
 
     return(
       <div className="Home">
-      <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" />
+      {/* <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" /> */}
         <header className="header">
-          <h1 className="title">Welcome to Zhimin Drink Shop!</h1>
+          <h2 className="title">Zhimin Drink Shop</h2>
         </header>
     
         <div className="menu">

@@ -1,102 +1,88 @@
+/* Base styles for all screen sizes */
 .app {
-  background-color: #f0f0f0; 
-  background-image: url('https://marketplace.canva.com/EAFuKIbGJJg/1/0/900w/canva-green-watercolor-instagram-story-background-MpipxzoqTl0.jpg'); 
-  background-size: cover; /* Cover the entire container */
-  background-position: center; /* Center the background image */
-  min-height: 100vh; /* Set a minimum height to cover the entire viewport */
+  background-color: #f0f0f0;
+  background-image: url('https://marketplace.canva.com/EAFuKIbGJJg/1/0/900w/canva-green-watercolor-instagram-story-background-MpipxzoqTl0.jpg');
+  background-size: cover;
+  background-position: center;
+  min-height: 100vh;
   display: flex;
-  flex-direction: column; 
+  flex-direction: column;
   align-items: center;
-  }
-  
-  .title {
-    font-size: 1.5rem;
-    border: 1px solid rgb(0, 255, 179);
-    text-align: center;
-  }
-  
-  .header {
-    width: 100%;
-    /* border: 1px solid orange; */
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    margin: 5px 0;
-    padding: 10px;
-    
-  }
-  
-  .content {
-    width: 100%;
-    border: 1px solid lightskyblue;
-    margin-top: 5px;
-  }
-  
-  .menu-list {
-    list-style: none;
-    display: flex;
-    justify-content: space-evenly;
-    padding: 0;
-    margin: 10px 0; /* Adjust the margin based on your design */
-  }
-  .menu-list li button {
-    width: 150px; /* Set your desired width */
-    /* Add other button styles as needed */
-  }
-  .menu-list li {
-    margin-right: 15px; /* Adjust the margin based on your design */
-    font-size: 18px; /* Adjust the size based on your design */
-  }
-  
-  
-  .exit-button {
-    background-color: #FF6347; /* Adjust the color based on your design */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 150px
-  }
-  
-  
-  .loading {
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    background-color: lightcoral;
-    color: aliceblue;
-    height: 100%;
-    font-size: 36px;
-  }
- 
-  /* START */
-/*****************
-New styles begin here and continue to the end of the page 
-****************/
+  padding: 20px;
+}
 
+.title {
+  font-size: 1.5rem;
+  border: 1px solid rgb(0, 255, 179);
+  text-align: center;
+}
+
+.header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 5px 0;
+  padding: 10px;
+}
+
+.content {
+  width: 100%;
+  border: 1px solid lightskyblue;
+  margin-top: 5px;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  justify-content: space-evenly;
+  padding: 0;
+  margin: 10px 0;
+}
+
+.menu-list li button {
+  width: 150px;
+  font-size: 18px;
+}
+
+.exit-button {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: lightcoral;
+  color: aliceblue;
+  height: 100%;
+  font-size: 36px;
+}
+
+/* START */
 section ul {
   list-style-type: none;
   padding: 0;
   margin: 0;
 }
-/* turn on flexbox here - prior to this, elements stacked individually as blocks */
 
 /* Tablet */
 @media (min-width: 550px) {
-  /* display flex on the ul turns the list into a flex container, and the li into flex items */
-  /* flex-flow is shorthand for flex-direction and flex-wrap */
-  /* flex-wrap wrap on the ul allows the li to wrap to the next line */
   section ul {
     display: flex;
     flex-flow: row wrap;
     justify-content: space-between;
   }
 
-  /* flex-basis on the li sets the width of the li to 49.5% - this allows two li to fit on a line */
   section li {
     flex-basis: 49.5%;
   }
-  /* turn off object position, inherit object-fit: cover */
+
   figure img {
     object-position: 0;
   }
@@ -108,7 +94,6 @@ section ul {
     margin-left: 100px;
   }
 
-  /* flex-basis on the li sets the width of the li to 32.5% - this allows three li to fit on a line */
   section li {
     flex-basis: 32.5%;
   }

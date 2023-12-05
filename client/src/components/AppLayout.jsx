@@ -44,7 +44,7 @@ export default function AppLayout() {
             </li>
             <li>
               <button onClick={() => navigate('/app/debugger')}>
-                Auth Debugger
+                AuthDebugger
               </button>
             </li>
             <li>

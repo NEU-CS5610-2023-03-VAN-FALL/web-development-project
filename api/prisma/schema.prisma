@@ -30,7 +30,7 @@ model User {
 }
 
 model Product{
-  productId     Int      @id @default(autoincrement())
+  productId     Int      @id @default(autoincrement()) 
   productName   String
   description   String
   price         Float  

@@ -50,7 +50,7 @@ export default function OrderDetail() {
           <ul className="drinks-list">
             {orderDetails.products && orderDetails.products.length > 0 ? (
               orderDetails.products.map((drink) => (
-                <li key={drink.id} className="drink-item">
+                <li key={drink.productId} className="drink-item">
                   <img
                     src={drink.imageUrl}
                     alt={drink.productName}

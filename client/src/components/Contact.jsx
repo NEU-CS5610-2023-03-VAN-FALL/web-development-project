@@ -6,30 +6,30 @@ export default function Contact() {
     <div className="Contact">
       <form>
         <div>
-        {/* <img src="https://i.fbcd.co/products/original/pig-logo-design-vector-0e7cea69facb05b519d578326eca960e19f6ae46513ef4226529aa50362635dd.jpg" alt="Logo" className="logo" /> */}
-          <p>
-            <h1>Contact Us</h1>
-          </p>
+          <h1>Contact Us</h1>
+        </div>
+
+        <div>
           <label htmlFor="firstName">First Name:</label>
-          <input type="text" id="firstName" />
+          <input type="text" id="firstName" autoComplete="given-name" />
         </div>
         <br />
 
         <div>
           <label htmlFor="lastName">Last Name: </label>
-          <input type="text" id="lastName" />
+          <input type="text" id="lastName" autoComplete="family-name" />
         </div>
         <br />
 
         <div>
           <label htmlFor="email">Email Address:</label>
-          <input type="text" id="email" />
+          <input type="text" id="email" autoComplete="email" />
         </div>
         <br />
 
         <div>
           <label htmlFor="phone">Phone Number:</label>
-          <input type="text" id="phone" />
+          <input type="text" id="phone" autoComplete="tel" />
         </div>
         <br />
 
@@ -46,7 +46,7 @@ export default function Contact() {
             <strong>Please write your special requirement below</strong>
           </p>
           <label htmlFor="message">Special Requirement:</label>
-          <textarea id="message" name="message"></textarea>
+          <textarea id="message" name="message" autoComplete="off"></textarea>
         </div>
         <br />
 

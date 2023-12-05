@@ -98,15 +98,17 @@ export default function Menu() {
     <div className="drinks-container">
         <ul className="drinks-list">
           {drinks.map((drink) => (
-            <li key={drink.id}>
+            <li key={drink.productId}>
+              {/* console.log(drink.id); */}
               <img
                 src={drink.imageUrl}
                 alt={drink.productName}
                 width="150"
                 height="150"
-                onClick={() => alert(`Product ID: ${drink.id}\nProduct Name: ${drink.productName}\nDescription: ${drink.description}\nPrice: ${drink.price}`)}
+                onClick={() => alert(`Product ID: ${drink.productId}\nProduct Name: ${drink.productName}\nDescription: ${drink.description}\nPrice: ${drink.price}`)}
               />
               <h3>{drink.productName}</h3>
+              <h3>${drink.price}</h3>
             </li>
             ))}
         </ul>

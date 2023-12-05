@@ -1,85 +1,107 @@
+/* Base styles for all screen sizes */
+.Menu {
+  background-color: #f0f0f0;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
 
-  
-  /* Container Styles */
-  .Menu {
-    background-color: #f0f0f0;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
+/* Header Styles */
+.header {
+  color: #333;
+  text-align: center;
+  padding: 1rem;
+
+  /* Adjust padding for smaller screens */
+  @media (max-width: 550px) {
+    padding: 0.5rem;
   }
-  
-  /* Header Styles */
-  .header {
-    
-    color:#333; 
-    text-align: center;
-    padding: 1rem;
+}
+
+.title {
+  margin: 0;
+}
+
+/* Menu Styles */
+.menu {
+  margin-top: 1rem;
+}
+
+.menu-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
+.menu-list li {
+  margin: 0.5rem;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+.menu-list li button {
+  width: 150px;
+}
+
+.enter-button {
+  background-color: #FF6347;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 150px;
+}
+
+/* Drinks Container Styles */
+.drinks-container {
+  margin-top: 2rem;
+}
+
+.drinks-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
+.drinks-list li {
+  width: calc(33.333% - 1rem);
+
+  /* Adjust width for smaller screens */
+  @media (max-width: 550px) {
+    width: calc(100% - 1rem);
+    margin: 0.5rem;
   }
-  
-  .title {
-    margin: 0;
-  }
-  
-  /* Menu Styles */
-  .menu {
-    margin-top: 1rem;
-  }
-  
+
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.drinks-list img {
+  cursor: pointer;
+  transition: transform 0.3s ease-in-out;
+  max-width: 100%;
+}
+
+.drinks-list img:hover {
+  transform: scale(1.1);
+}
+
+/* Larger screens: Horizontal menu */
+@media (min-width: 768px) {
   .menu-list {
-    list-style: none;
-    display: flex;
-    justify-content: center;
-    margin: 0;
-    padding: 0;
+    flex-wrap: nowrap;
   }
-  
+
   .menu-list li {
-    margin: 0 1rem;
-    
+    margin: 0 0.5rem;
   }
-  .enter-button {
-    background-color: #FF6347; /* Adjust the color based on your design */
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    width: 150px
-  }
-  
-  
-  /* Drinks Container Styles */
-  .drinks-container {
-    margin-top: 2rem;
-  }
-  
-  .drinks-list {
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-evenly; /* Align items evenly horizontally */
-    margin: 0;
-    padding: 0;
-  }
-  
-  .drinks-list li {
-    width: calc(25% - 2rem); /* Set width for each item, considering margin */
-    margin: 1rem;
-    text-align: center;
-    box-sizing: border-box; /* Include padding and border in the element's total width and height */
-  }
-  
-  .drinks-list img {
-    cursor: pointer;
-    transition: transform 0.3s ease-in-out;
-    max-width: 100%; 
-    
-  }
-  
-  .drinks-list img:hover {
-    transform: scale(1.1);
-  }
-  
- 
-  
+}

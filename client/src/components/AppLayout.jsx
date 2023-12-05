@@ -10,6 +10,7 @@ export default function AppLayout() {
   if (isLoading) {
     return <div className="loading">Loading...</div>;
   }
+  
 
   return (
     <div className="app">
@@ -28,7 +29,7 @@ export default function AppLayout() {
             </button>
             </li>
             <li>
-              <button onClick={() => navigate('/app')}>
+              <button onClick={() => navigate('profile')}>
                 Profile
               </button>
             </li>

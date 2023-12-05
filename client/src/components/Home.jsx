@@ -32,7 +32,7 @@ export default function Home() {
 
   const order = async () => {
     if (isAuthenticated) {
-      navigate('/app');
+      navigate('app/order');
     } else {
       try {
         await loginWithRedirect({ screen_hint: 'login' });
@@ -91,7 +91,7 @@ export default function Home() {
             </li>
           ) : (
             <li>
-              <button className="enter-button" onClick={() => navigate('/app')}>
+              <button className="enter-button" onClick={() => navigate('/app/profile')}>
               Enter App
               </button>
             </li>

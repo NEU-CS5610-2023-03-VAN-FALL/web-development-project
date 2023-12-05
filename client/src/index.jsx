@@ -64,7 +64,7 @@ root.render(
               </RequireAuth>
             }
           >
-            <Route index element={<Profile />} />
+            <Route path="profile"element={<Profile />} />
             <Route path="order" element={<Order />} />
             <Route path="orderHistory" element={<OrderHistory />} />
             <Route

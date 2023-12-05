@@ -132,6 +132,9 @@ export default function Order() {
           >
             <option value="USD">USD</option>
             <option value="CAD">CAD</option>
+            <option value="EUR">EUR</option>
+            <option value="AUD">AUD</option>
+            <option value="CNY">CNY</option>
             
           </select>
         </div>

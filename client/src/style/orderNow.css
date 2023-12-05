@@ -5,7 +5,7 @@
     justify-content: space-between;
     flex-wrap: wrap;
     max-width: 1200px;
-    margin: 20px auto;
+    margin:  auto;
   }
   
   .drinks-list {
@@ -23,13 +23,13 @@
   
   .drinks-list img {
     cursor: pointer;
-    transition: transform 0.3s ease-in-out;
+    transition: ease-in-out;
     max-width: 100%; 
     
   }
   
   .drinks-list h3 {
-    margin: 10px 0;
+    margin: 0;
   }
   
   .drinks-list p {
@@ -43,11 +43,11 @@
   }
   
   #currency {
-    padding: 8px;
-    font-size: 1em;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    margin-right: 10px;
+    padding: 5px;
+    font-size: 0.8em;
+    /* border: 1px solid #ccc; */
+    /* border-radius: 4px; */
+    
   }
 
   label[for="currency"] {

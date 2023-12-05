@@ -11,17 +11,6 @@ export default function Menu() {
     const signUp = () => loginWithRedirect({ screen_hint: "signup" });
     const [drinks, setDrinks] = useState([]);
 
-    const order = async () => {
-        if (isAuthenticated) {
-          navigate('/app');
-        } else {
-          try {
-            await loginWithRedirect({ screen_hint: 'login' });
-          } catch (error) {
-            console.error('Login error:', error);
-          }
-        }
-    };
 
     useEffect(() => {
         const fetchDrinks = async () => {
@@ -39,6 +28,18 @@ export default function Menu() {
       
         fetchDrinks();
     }, []);
+
+    const order = async () => {
+      if (isAuthenticated) {
+        navigate('/app/order');
+      } else {
+        try {
+          await loginWithRedirect({ screen_hint: 'login' });
+        } catch (error) {
+          console.error('Login error:', error);
+        }
+      }
+    };
       
 
     return(
@@ -85,7 +86,7 @@ export default function Menu() {
               </li>
             ) : (
               <li>
-              <button className="enter-button" onClick={() => navigate('/app')}>
+              <button className="enter-button" onClick={() => navigate('/app/profile')}>
               Enter App
               </button>
             </li>

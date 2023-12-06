@@ -11,26 +11,18 @@ export default function Profile() {
 
   useEffect(() => {
     const fetchUserProfile = async () => {
-      try {
-        const accessToken = await getAccessTokenSilently();
-        const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
-          headers: {
-            Authorization: `Bearer ${accessToken}`,
-          },
-        });
+      const accessToken = await getAccessTokenSilently();
+      const response = await fetch(`${process.env.REACT_APP_API_URL}/users`, {
+        headers: {
+          Authorization: `Bearer ${accessToken}`,
+        },
+      });
 
-        if (!response.ok) {
-          throw new Error(`HTTP error! Status: ${response.status}`);
-        }
-
-        const userData = await response.json();
-        setUserData(userData);
-        setName(userData.name || "");
-        setAddress(userData.address || "");
-        setEmail(userData.email || "");
-      } catch (error) {
-        console.error("Error fetching user profile:", error);
-      }
+      const userData = await response.json();
+      setUserData(userData);
+      setName(userData.name || "");
+      setAddress(userData.address || "");
+      setEmail(userData.email || "");
     };
 
     fetchUserProfile();
@@ -71,30 +63,32 @@ export default function Profile() {
   };
 
   if (!userData) {
-    return <div>Loading...</div>;
+    return <div aria-busy="true" aria-live="polite">Loading...</div>;
   }
 
   return (
-    <div className="profile-container">
-      <div>
-        <label>Name: </label>
-        <input type="text" value={name} onChange={handleNameChange} />
+    <form>
+      <div role="region" aria-label="User Profile Information" className="profile-container">
+        <div>
+          <label htmlFor="name">Name: </label>
+          <input type="text" id="name" value={name} onChange={handleNameChange} />
+        </div>
+        <div>
+          <label htmlFor="address">Address: </label>
+          <input type="text" id="address" value={address} onChange={handleAddressChange} />
+        </div>
+        <div>
+          <label htmlFor="email">Email: </label>
+          <input type="email" id="email" value={email} onChange={handleEmailChange} />
+        </div>
+        <div>
+          <p>Auth0Id: {user.sub}</p>
+        </div>
+        <div>
+          <p>Email verified: {user.email_verified?.toString()}</p>
+        </div>
+        <button type="button" onClick={handleUpdateProfile}>Save</button>
       </div>
-      <div>
-        <label>Address: </label>
-        <input type="text" value={address} onChange={handleAddressChange} />
-      </div>
-      <div>
-        <label>Email: </label>
-        <input type="email" value={email} onChange={handleEmailChange} />
-      </div>
-      <div>
-        <p>Auth0Id: {user.sub}</p>
-      </div>
-      <div>
-        <p>Email verified: {user.email_verified?.toString()}</p>
-      </div>
-      <button onClick={handleUpdateProfile}>Save</button>
-    </div>
+    </form>
   );
 }

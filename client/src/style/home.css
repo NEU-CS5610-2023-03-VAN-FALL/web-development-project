@@ -64,9 +64,9 @@ button {
   background-color: #FF6347; /* Adjust the color based on your design */
   color: white;
   border: none;
-  border-radius: 5px;
+  /* border-radius: 5px; */
   cursor: pointer;
-  width: 120px;
+  max-width: 120px;
 }
 
 @keyframes sparkle {

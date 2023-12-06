@@ -34,9 +34,8 @@ export default function Contact() {
         <br />
 
         <div>
-          <p>
-            <strong>Date of Birth</strong>
-          </p>
+          
+          <label htmlFor="time">Date of Birth:</label>
           <input type="date" id="time" name="time" />
         </div>
         <br />
@@ -45,7 +44,7 @@ export default function Contact() {
           <p>
             <strong>Please write your special requirement below</strong>
           </p>
-          <label htmlFor="message">Special Requirement:</label>
+          <label htmlFor="message">Message:</label>
           <textarea id="message" name="message" autoComplete="off"></textarea>
         </div>
         <br />
@@ -54,20 +53,21 @@ export default function Contact() {
           <p>
             <strong>How do you know us</strong>
           </p>
-          <input type="radio" id="Website" name="howYouKnow" />
-          <label htmlFor="Website">Website</label>
-          <br />
-          <input type="radio" id="Friend" name="howYouKnow" />
-          <label htmlFor="Friend">Friend</label>
-          <br />
-          <input type="radio" id="News" name="howYouKnow" />
-          <label htmlFor="News">News</label>
+          <div>
+            <input type="radio" id="Website" name="howYouKnow" />
+            <label htmlFor="Website">Website</label>
+            <br />
+            <input type="radio" id="Friend" name="howYouKnow" />
+            <label htmlFor="Friend">Friend</label>
+            <br />
+            <input type="radio" id="News" name="howYouKnow" />
+            <label htmlFor="News">News</label>
+          </div>
         </div>
-        <br />
         <br />
 
         <div>
-          <input type="submit" value="Submit" />
+          <input type="submit" value="Submit Contact Form" />
         </div>
         <br />
       </form>

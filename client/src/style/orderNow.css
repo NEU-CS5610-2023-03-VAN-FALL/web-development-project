@@ -45,8 +45,8 @@
   #currency {
     padding: 5px;
     font-size: 0.8em;
-    /* border: 1px solid #ccc; */
-    /* border-radius: 4px; */
+    border: 1px solid #ccc; 
+    border-radius: 4px; 
     
   }
 

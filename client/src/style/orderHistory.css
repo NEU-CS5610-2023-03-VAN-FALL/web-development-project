@@ -1,0 +1,49 @@
+
+
+.repositories-list {
+  list-style: none;
+  padding: 0;
+  max-width: max-content;
+  overflow: auto;
+}
+
+.repository-row-li {
+  height: 60px;
+  border: 1px solid rgb(0, 81, 255);
+  border-radius: 8px;
+  margin-bottom: 10px;
+  transition: background-color 0.5s;
+  cursor: pointer;
+  background-color: white;
+}
+
+.repository-row-li:hover {
+  background-color: rgb(128, 249, 117);
+}
+
+.repository-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+}
+
+.order-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.order-date {
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.total-amount {
+  color: #555;
+}
+@media (max-width: 768px) {
+  .repository-row-li {
+    height: auto; /* Adjust height for smaller screens */
+  }
+
+}
